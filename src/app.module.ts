@@ -9,7 +9,9 @@ import { CatsModule } from './modules/cats/cats.module';
   imports: [
     DictationsModule,
     CatsModule,
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    MongooseModule.forRoot(
+      'mongodb+srv://gui:29041990@cluster0-8chcq.mongodb.net/dcm?retryWrites=true&w=majority',
+    ),
   ],
   controllers: [AppController],
   providers: [AppService],
