@@ -28,6 +28,10 @@ export class DictationsController {
 
   @Get('/:authorID')
   async getAuthorDictations(@Res() res, @Param('authorID') authorID) {
+    if (authorID === 'public') {
+      const publicDictations = await this.dictationsService.getPublicDictations();
+      return res.status(HttpStatus.OK).json(publicDictations);
+    }
     const dictations = await this.dictationsService.getAuthorDictations(
       authorID,
     );

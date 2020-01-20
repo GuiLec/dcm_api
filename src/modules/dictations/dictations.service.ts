@@ -23,6 +23,14 @@ export class DictationsService {
     return dictations;
   }
 
+  async getPublicDictations(): Promise<Dictation[]> {
+    console.log('PUBLIC!!!');
+    const dictations = await this.dictationModel
+      .find({ 'author.id': undefined })
+      .exec();
+    return dictations;
+  }
+
   async findAll(): Promise<Dictation[]> {
     return await this.dictationModel.find().exec();
   }
