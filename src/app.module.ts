@@ -10,6 +10,7 @@ import { CatsModule } from './modules/cats/cats.module';
     DictationsModule,
     CatsModule,
     MongooseModule.forRoot(
+      //'mongodb://localhost/nest'),
       'mongodb+srv://gui:29041990@cluster0-8chcq.mongodb.net/dcm?retryWrites=true&w=majority',
     ),
   ],

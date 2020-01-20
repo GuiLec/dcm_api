@@ -4,6 +4,10 @@ export const DictationSchema = new mongoose.Schema({
   id: String,
   name: String,
   text: String,
+  author: {
+    email: String,
+    id: String,
+  },
   choiceInputs: [
     {
       choiceInputID: String,

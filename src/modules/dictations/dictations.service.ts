@@ -16,6 +16,13 @@ export class DictationsService {
     return await createdDictation.save();
   }
 
+  async getAuthorDictations(authorID): Promise<Dictation[]> {
+    const dictations = await this.dictationModel
+      .find({ 'author.id': authorID })
+      .exec();
+    return dictations;
+  }
+
   async findAll(): Promise<Dictation[]> {
     return await this.dictationModel.find().exec();
   }

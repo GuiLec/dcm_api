@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Res,
+  NotFoundException,
+  HttpStatus,
+} from '@nestjs/common';
 import { CreateDictationsDto } from './dto/dictations.dto';
 import { DictationsService } from './dictations.service';
 import { Dictation } from './dictations.interface';
@@ -15,5 +24,14 @@ export class DictationsController {
   @Get()
   async findAll(): Promise<Dictation[]> {
     return this.dictationsService.findAll();
+  }
+
+  @Get('/:authorID')
+  async getAuthorDictations(@Res() res, @Param('authorID') authorID) {
+    const dictations = await this.dictationsService.getAuthorDictations(
+      authorID,
+    );
+    if (!dictations) throw new NotFoundException('No such dictation!');
+    return res.status(HttpStatus.OK).json(dictations);
   }
 }
