@@ -20,4 +20,13 @@ export class UserService {
     const user = await this.userModel.findOne({ id: userID }).exec();
     return user;
   }
+
+  async updateUser(userID, createUserDto: CreateUserDto): Promise<User> {
+    const updatedUser = await this.userModel.findOneAndUpdate(
+      { id: userID },
+      createUserDto,
+      { new: true },
+    );
+    return updatedUser;
+  }
 }
