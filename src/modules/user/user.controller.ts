@@ -36,7 +36,6 @@ export class UserController {
     @Query('userID') userID,
     @Body() createUserDto: CreateUserDto,
   ) {
-    console.log();
     const user = await this.userService.updateUser(userID, createUserDto);
     if (!user) throw new NotFoundException('User does not exist!');
     return res.status(HttpStatus.OK).json({
