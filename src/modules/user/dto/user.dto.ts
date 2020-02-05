@@ -5,4 +5,6 @@ export class CreateUserDto {
   readonly name: string;
   readonly email: string;
   readonly dictationsHistory: DictationEvent[];
+  readonly dictationsDifficulties: number[];
+  readonly selectedLanguage: string;
 }

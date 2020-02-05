@@ -3,6 +3,8 @@ export interface User {
   email: string;
   id: string;
   dictationsHistory: DictationEvent[];
+  dictationsDifficulties: number[];
+  selectedLanguage: string;
 }
 
 export interface DictationEvent {

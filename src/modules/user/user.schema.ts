@@ -12,4 +12,6 @@ export const UserSchema = new mongoose.Schema({
       date: Number,
     },
   ],
+  dictationsDifficulties: [Number],
+  selectedLanguage: String,
 });
