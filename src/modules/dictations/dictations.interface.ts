@@ -6,6 +6,8 @@ export interface Dictation {
   text: string;
   choiceInputs: ChoiceInput[];
   author?: User;
+  difficulty: number;
+  language: string;
 }
 
 export interface ChoiceInput {

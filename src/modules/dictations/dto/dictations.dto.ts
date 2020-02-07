@@ -7,4 +7,6 @@ export class CreateDictationsDto {
   readonly text: string;
   readonly author?: User;
   readonly choiceInputs: ChoiceInput[];
+  readonly difficulty: number;
+  readonly language: string;
 }

@@ -8,6 +8,8 @@ export const DictationSchema = new mongoose.Schema({
     email: String,
     id: String,
   },
+  difficulty: Number,
+  language: String,
   choiceInputs: [
     {
       choiceInputID: String,
