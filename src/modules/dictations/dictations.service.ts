@@ -16,7 +16,7 @@ export class DictationsService {
     return await createdDictation.save();
   }
 
-  async getAuthorDictations(authorID): Promise<Dictation[]> {
+  async getAuthorDictations(authorID: string): Promise<Dictation[]> {
     const dictations = await this.dictationModel
       .find({ 'author.id': authorID })
       .exec();
@@ -24,9 +24,27 @@ export class DictationsService {
   }
 
   async getPublicDictations(): Promise<Dictation[]> {
-    console.log('PUBLIC!!!');
     const dictations = await this.dictationModel
       .find({ 'author.id': undefined })
+      .exec();
+    return dictations;
+  }
+
+  async getPreferedDictation(
+    language: string,
+    difficulties: string,
+  ): Promise<Dictation[]> {
+    const dictations = await this.dictationModel
+      .find({ language: language })
+      .find({
+        difficulty: [
+          Number(difficulties[0]) || 0,
+          Number(difficulties[1]) || 0,
+          Number(difficulties[2]) || 0,
+          Number(difficulties[3]) || 0,
+          Number(difficulties[4]) || 0,
+        ],
+      })
       .exec();
     return dictations;
   }

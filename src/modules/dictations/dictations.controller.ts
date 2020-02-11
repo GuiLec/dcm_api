@@ -26,7 +26,7 @@ export class DictationsController {
     return this.dictationsService.findAll();
   }
 
-  @Get('/:authorID')
+  @Get('author/:authorID')
   async getAuthorDictations(@Res() res, @Param('authorID') authorID) {
     if (authorID === 'public') {
       const publicDictations = await this.dictationsService.getPublicDictations();
@@ -36,6 +36,20 @@ export class DictationsController {
       authorID,
     );
     if (!dictations) throw new NotFoundException('No such dictation!');
+    return res.status(HttpStatus.OK).json(dictations);
+  }
+
+  @Get('/:language/:difficulties')
+  async getPreferedDictation(
+    @Res() res,
+    @Param('language') language,
+    @Param('difficulties') difficulties,
+  ) {
+    const dictations = await this.dictationsService.getPreferedDictation(
+      language,
+      difficulties,
+    );
+    if (!dictations) throw new NotFoundException('No such prefered dictation!');
     return res.status(HttpStatus.OK).json(dictations);
   }
 }
